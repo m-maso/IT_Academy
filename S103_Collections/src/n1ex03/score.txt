@@ -1,0 +1,2 @@
+Username: John, Score: 6 points
+Username: Mary, Score: 8 points

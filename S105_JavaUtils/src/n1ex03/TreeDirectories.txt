@@ -1,0 +1,16 @@
+|__(D) 2023-10-21 n1ex01 
+  |____(F) 2023-10-21 Directory.class 
+  |____(F) 2023-10-21 Directory.java 
+|__(D) 2023-10-21 n1ex02 
+  |____(F) 2023-10-21 TreeDirectories.class 
+  |____(F) 2023-10-21 TreeDirectories.java 
+|__(D) 2023-10-21 n1ex03 
+  |____(F) 2023-10-21 SaveDirTxt.class 
+  |____(F) 2023-10-21 SaveDirTxt.java 
+  |____(F) 2023-10-21 TreeDirectories.txt 
+|__(D) 2023-10-21 n1ex04 
+  |____(F) 2023-10-21 ReadTxtShowContent.class 
+  |____(F) 2023-10-21 ReadTxtShowContent.java 
+|__(D) 2023-10-17 n1ex05 
+  |____(F) 2023-10-17 SerialiseObj.java 
+  |____(F) 2023-10-21 README.md 
