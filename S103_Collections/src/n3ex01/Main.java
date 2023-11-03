@@ -14,8 +14,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		// Calling to read .cvs file
-		people = readCVSFile();
+		// Calling to read .csv file
+		people = readCSVFile();
 		
 		int option = 0;
 		String msg = "";
@@ -94,14 +94,12 @@ public class Main {
 	 * It reads the file line by line, .split it gives each cell and the data it's saved in an ArrayList<Person>
 	 * @return an ArrayList<Person> people */ 
 	
-	public static ArrayList<Person> readCVSFile() {
-		String path = "C:\\Users\\monma\\Documents\\IT Academy\\espc_java\\Sprint_1\\S1_03\\src\\people.csv";
+	public static ArrayList<Person> readCSVFile() {
 		String line = "";
 		String firstN, lastN, nif;
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(path));
-//			BufferedReader br = new BufferedReader(new FileReader("people.cvs"));
+			BufferedReader br = new BufferedReader(new FileReader("./src/people.csv"));
 			while((line = br.readLine()) != null) {
 				String[] values = line.split(",");
 				firstN = values[0];
@@ -110,12 +108,10 @@ public class Main {
 				people.add(new Person(firstN,lastN,nif));
 			}
 			br.close();
-		} catch (FileNotFoundException e) {  // new FileReader()
+		} catch (FileNotFoundException e) {  
 			System.out.println("Error! File not found " + e.getMessage());			
-//					e.printStackTrace();
-		} catch (IOException e) {  //  br.readLine()
+		} catch (IOException e) { 
 			System.out.println("Input/Output error " + e.getMessage());
-//					e.printStackTrace();
 		} 
 		return people;
 	}
