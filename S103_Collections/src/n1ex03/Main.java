@@ -36,19 +36,14 @@ public class Main {
 
 		
 		/* GAME */
-		// Ask for user name 
 		System.out.println("Write your name:");
 		userName = sc.nextLine();
 		
-		/* Show a random country (from the file) for the user to guess its capital
-		 * Repeat 10 times, if answer is correct add 1 point to the score
-		 */
 		for(int i = 0; i < 10; i++) {
 			int numRandom = (int)(Math.random()*(countriesHMap.size()));
 			country = (String) countriesHMap.keySet().toArray()[numRandom];
 			capital = (String) countriesHMap.values().toArray()[numRandom];
 			
-//			System.out.println("Which is the capital of " + country + "?" + capital);
 			System.out.println("Which is the capital of " + country + "?");
 			userCapital = sc.nextLine();
 			
@@ -62,7 +57,7 @@ public class Main {
 
 		System.out.println("You finished the game, " + userName + "!");
 		
-		// Save score into a .txt file with user name and his score
+		
 		saveInScoreFile(userName, score);
 		System.out.println("You can see your total score in the 'score.txt' file");
 		sc.close();
@@ -74,19 +69,18 @@ public class Main {
 	 * add each element of the arrays inside the HashMap<String, String> I return
 	*/
 	public static HashMap<String, String> readFile(HashMap<String, String> countriesHMap) { 
-//		String path = "C:\\Users\\monma\\Documents\\IT Academy\\espc_java\\Sprint_1\\S1_03\\src\\n1ex03\\countries.txt";
-		String strCL = ""; //String Current Line
+
+		String strCL = ""; 
 		String country, capital;
 		try {
-//			File file = new File(path);
-			File file = new File("countries.txt");
+			File file = new File("./src/n1ex03/countries.txt");  
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			while((strCL = br.readLine()) != null) {
 				if(strCL != null && !strCL.isEmpty()){
-					// Divide line between countries and capitals
+					
 					String cell[] = strCL.split(" ");
-					// Delete '_' so it doesn't count as a wrong answer
+					
 					if(!cell[0].isEmpty() && !cell[1].isEmpty()) {
 						country = cell[0].replace("_", " ");
 						capital = cell[1].replace("_", " ");
@@ -95,33 +89,29 @@ public class Main {
 				}
 			}
 			br.close();
-		} catch (FileNotFoundException e) {  // new FileReader()
+		} catch (FileNotFoundException e) {  
 			System.out.println("Error! File not found " + e.getMessage());			
-//			e.printStackTrace();
 		}
-		catch (IOException e) {  //  br.readLine()
+		catch (IOException e) {  
 			System.out.println("Input/Output error " + e.getMessage());
-//			e.printStackTrace();
 		} 
 		return countriesHMap;
 	}
 	
 	/**
-	 * Save data into a .txt file:
-	 * We save 'userName' and 'score' 
+	 * Save data into a .txt file: We save 'userName' and 'score' 
 	 * */
 	public static void saveInScoreFile(String userName, int score) {
-//		String path = "C:\\Users\\monma\\Documents\\IT Academy\\espc_java\\Sprint_1\\S1_03\\src\\n1ex03\\score.txt";
+
 		try {
-//			File myNewFile = new File(path);
-			File myNewFile = new File("score.txt");
-		// 1st.step: Create a new .txt file if doesn't exist
+
+			File myNewFile = new File("./src/n1ex03/score.txt");
+		
 			if(!myNewFile.exists()) {
 				myNewFile.createNewFile();
 				System.out.println("New Score File Created");
 			} 
 			
-		// 2nd.step: Save data into the new file by writting in it
 			FileWriter writting = new FileWriter(myNewFile, true);
 			writting.write("Username: " + userName + ", Score: " + score + " points");
 			writting.write("\n");
@@ -129,7 +119,6 @@ public class Main {
 			
 		} catch(IOException e) {
 			System.out.println("There has been an error" + e.getMessage());
-//			e.printStackTrace();
 		}
 		
 	}
