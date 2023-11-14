@@ -1,0 +1,3 @@
+-Create database by using the '.sql' file which name starts with 'schema_' (e.g schema_tienda.sql)
+-Select database by writting the command: use <database_name> (e.g. use -------)
+-Run the queries in the queries' file (e.g tienda_queries.sql)
