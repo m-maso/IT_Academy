@@ -1,15 +1,16 @@
 For all exercises:
 -------------------
--Open command prompt (cmd)
-    -e.g. by pressing the windows logo + R and typing cmd or by writting cmd in the search box on the tasks bar 
--Open the file's directory where is the file you want to compile, by giving the pathway: cd file_path
-    e.g. cd C:\\Users\\monma\\Documents\\IT Academy\\espc_java\\Sprint_1\\S1_05\\src\\n1ex01
--We compile the file by writting: javac name_of_file.java
--If we need to pass an argument we write: java name_of_file.java argument_we_want_to_pass
+- Open command prompt (cmd)<br>
+e.g. by pressing the windows logo + R and typing cmd or by writting cmd in the search box on the tasks bar 
+- Open the file's directory where is the file you want to compile, by giving the pathway: cd file_path<br>
+e.g. cd C:\\Users\\monma\\Documents\\IT Academy\\espc_java\\Sprint_1\\S1_05\\src\\n1ex01
+- You compile the file by writting: javac name_of_file.java
+- If you need to pass an argument you write: java name_of_file.java argument_we_want_to_pass
 
 !! Last exercise, n5 
--I compile the file from the folder of the project (one before 'src' folder) 
-C:\Users\monma\Documents\IT Academy\espc_java\Sprint_1\S1_05>javac src/n1ex05/*.java
+- You compile the file from the folder of the project (one before 'src' folder) 
+e.g:<br>
+C:\Users\monma\Documents\IT Academy\espc_java\Sprint_1\S1_05>javac src/n1ex05/*.java<br>
 C:\Users\monma\Documents\IT Academy\espc_java\Sprint_1\S1_05>java -cp src n1ex05.SerialiseObj
 
 ---------------------------------------- n1ex01 ----------------------------------------
