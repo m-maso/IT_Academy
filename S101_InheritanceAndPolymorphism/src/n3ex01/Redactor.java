@@ -14,7 +14,7 @@ public class Redactor {
 	public Redactor(String nom, String DNI) {
 		this.nom = nom;
 		this.DNI = DNI;
-		Redactor.sou = 1500; //Redactor.sou = 1500;
+		Redactor.sou = 1500; 
 		this.noticies = new ArrayList<Noticia>();
 	}
 	
@@ -46,7 +46,7 @@ public class Redactor {
 	// Own Methods
 	@Override
     public String toString() {
-        return "Redactor-> Nom: " + this.nom + ", DNI:" + this.DNI +  ", sou: " + sou + ",\n"
-        		+ " Notícies: " + this.noticies + ".\n";
+        return "Redactor-> Nom: " + this.nom + ", DNI: " + this.DNI +  ", sou: " + sou + ",\n"
+        		+ " Notícies publicades: " + this.noticies + ".\n";
     }
 }

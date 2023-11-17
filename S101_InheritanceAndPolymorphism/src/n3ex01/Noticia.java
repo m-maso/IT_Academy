@@ -7,7 +7,6 @@ public abstract class Noticia {
 	protected String text; 
 	protected int puntuacio;
 	protected int preu;
-	protected String tipusNot;
 	
 	// Constr
 	public Noticia(String titular) {
@@ -15,7 +14,6 @@ public abstract class Noticia {
 		this.text = " ";
 		this.puntuacio = 0;
 		this.preu = 0;
-		this.tipusNot = tipusNot;
 	}
 	
 	// Getters
@@ -31,9 +29,7 @@ public abstract class Noticia {
 	public int getPreu() {
 		return this.preu;
 	}
-	public String getTipusNot() {
-		return this.tipusNot;
-	}
+	
 	
 	// Setters
 	public void setTitular(String titular) {
@@ -48,15 +44,11 @@ public abstract class Noticia {
 	public void setPreu(int preu) {
 		this.preu = preu;
 	}
-	public void setTipusNot(String tipusNot) {
-		this.tipusNot = tipusNot;
-	}
+	
 	
 	
 	// Grl methods
 	public abstract int calcularPreuNoticia();
 	public abstract int calcularPuntuacioNoticia();
 	
-	// Own methods 
-	public abstract String toString();
 }

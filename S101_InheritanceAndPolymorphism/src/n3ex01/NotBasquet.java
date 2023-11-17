@@ -12,7 +12,6 @@ public class NotBasquet extends Noticia {
 		this.text = "";
 		this.preu = 250;
 		this.puntuacio = 4;
-		this.tipusNot = "Basquet";
 		this.competicio = competicio;
 		this.club = club;
 	}
@@ -41,7 +40,7 @@ public class NotBasquet extends Noticia {
         if(this.competicio.equalsIgnoreCase("Eurolliga")) {
             preuN += 75;
         }
-        if((this.club.equalsIgnoreCase("Barça") || (this.club.equalsIgnoreCase("Madrid")))){
+        if(this.club.equalsIgnoreCase("Barça") || this.club.equalsIgnoreCase("Madrid")){
             preuN += 75;
         }
         return preuN;
@@ -53,7 +52,7 @@ public class NotBasquet extends Noticia {
 
         if(this.competicio.equalsIgnoreCase("Eurolliga")) { puntN += 3; }
         if(this.competicio.equalsIgnoreCase("ABC")) { puntN += 2; }
-        if((this.club.equalsIgnoreCase("Barça") || (this.club.equalsIgnoreCase("Madrid")))) { puntN += 1; }
+        if(this.club.equalsIgnoreCase("Barça") || this.club.equalsIgnoreCase("Madrid")) { puntN += 1; }
         return puntN;
 	}
 	

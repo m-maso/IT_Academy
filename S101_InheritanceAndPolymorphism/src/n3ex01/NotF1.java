@@ -11,7 +11,6 @@ public class NotF1 extends Noticia {
 		this.text = "";
 		this.preu = 100;
 		this.puntuacio = 4;
-		this.tipusNot = "F1";
 		this.escuderia = escuderia;
 	}
 	
@@ -30,7 +29,7 @@ public class NotF1 extends Noticia {
 	public int calcularPreuNoticia() {
 		int preuN = this.preu;
 
-        if((this.escuderia.equalsIgnoreCase("Ferrari") || (this.escuderia.equalsIgnoreCase("Mercedes")))) {
+        if(this.escuderia.equalsIgnoreCase("Ferrari") || this.escuderia.equalsIgnoreCase("Mercedes")) {
             preuN += 50;
         }
         return preuN;
@@ -40,7 +39,7 @@ public class NotF1 extends Noticia {
 	public int calcularPuntuacioNoticia() {
 		int puntN = this.puntuacio;
 
-        if((this.escuderia.equalsIgnoreCase("Ferrari") || (this.escuderia.equalsIgnoreCase("Mercedes")))) {
+        if(this.escuderia.equalsIgnoreCase("Ferrari") || this.escuderia.equalsIgnoreCase("Mercedes")) {
             puntN += 2;
         }
         return puntN;

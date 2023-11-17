@@ -12,7 +12,6 @@ public class NotTenis extends Noticia {
 		this.text = "";
 		this.preu = 150;
 		this.puntuacio = 4;
-		this.tipusNot = "Tenis";
 		this.competicio = competicio;
 		this.tenista = tenista;
 	}
@@ -39,7 +38,7 @@ public class NotTenis extends Noticia {
 	public int calcularPreuNoticia() {
 		int preuN = this.preu;
 
-        if((this.tenista.equalsIgnoreCase("Federer") || (this.tenista.equalsIgnoreCase("Nadal") || (this.tenista.equalsIgnoreCase("Djokovic"))))) {
+        if(this.tenista.equalsIgnoreCase("Federer") || this.tenista.equalsIgnoreCase("Nadal") || this.tenista.equalsIgnoreCase("Djokovic")) {
             preuN += 100;
         }
         return preuN;
@@ -49,7 +48,7 @@ public class NotTenis extends Noticia {
 	public int calcularPuntuacioNoticia() {
 		int puntN = this.puntuacio;
 
-        if((this.tenista.equalsIgnoreCase("Federer") || (this.tenista.equalsIgnoreCase("Nadal") || (this.tenista.equalsIgnoreCase("Djokovic"))))) {
+        if(this.tenista.equalsIgnoreCase("Federer") || this.tenista.equalsIgnoreCase("Nadal") || this.tenista.equalsIgnoreCase("Djokovic")) {
             puntN += 3;
         }
         return puntN;
@@ -58,7 +57,7 @@ public class NotTenis extends Noticia {
 	// Own Methods
 	@Override
 	 public String toString() {
-		return "Noticia Futbol -> Titular: " + this.getTitular() + "\nCompetició: " + this.getCompeticio() 
+		return "Noticia Tenis -> Titular: " + this.getTitular() + "\nCompetició: " + this.getCompeticio() 
         + "\nTenista: " + this.getTenista() + "\n";
     }
 }

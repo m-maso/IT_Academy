@@ -11,7 +11,6 @@ public class NotMotoc extends Noticia {
 		this.text = "";
 		this.preu = 100;
 		this.puntuacio = 3;
-		this.tipusNot = "Motociclisme";
 		this.equip = equip;
 	}
 	
@@ -29,7 +28,7 @@ public class NotMotoc extends Noticia {
 	public int calcularPreuNoticia() {
 		int preuN = this.preu;
 
-        if((this.equip.equalsIgnoreCase("Honda") || (this.equip.equalsIgnoreCase("Yamaha")))) {
+        if(this.equip.equalsIgnoreCase("Honda") || this.equip.equalsIgnoreCase("Yamaha")) {
             preuN += 50;
         }
         return preuN;
@@ -39,7 +38,7 @@ public class NotMotoc extends Noticia {
 	public int calcularPuntuacioNoticia() {
 		int puntN = this.puntuacio;
 
-        if((this.equip.equalsIgnoreCase("Honda") || (this.equip.equalsIgnoreCase("Yamaha")))) {
+        if(this.equip.equalsIgnoreCase("Honda") || this.equip.equalsIgnoreCase("Yamaha")) {
             puntN += 3;
         }
         return puntN;
