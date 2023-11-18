@@ -1,38 +1,38 @@
 package n1ex01;
 
-public class NoGenericMethods <T> {
+public class NoGenericMethods {
 
 	// Attrib
-	private T object1;
-	private T object2;
-	private T object3;
+	private String object1;
+	private String object2;
+	private String object3;
 	
 	// Constr
-	public NoGenericMethods(T object1, T object2, T object3) {
+	public NoGenericMethods(String object1, String object2, String object3) {
 		this.object1 = object1;
 		this.object2 = object2;
 		this.object3 = object3;
 	}
 	
 	// Getters
-	public T getObject1() {
+	public String getObject1() {
 		return this.object1;
 	}
-	public T getObject2() {
+	public String getObject2() {
 		return this.object2;
 	}
-	public T getObject3() {
+	public String getObject3() {
 		return this.object3;
 	}
 	
 	// Setters
-	public void setObject1(T object1) {
+	public void setObject1(String object1) {
 		this.object1 = object1;
 	}
-	public void setObject2(T object2) {
+	public void setObject2(String object2) {
 		this.object2 = object2;
 	}
-	public void setObject3(T object3) {
+	public void setObject3(String object3) {
 		this.object3 = object3;
 	}
 	
