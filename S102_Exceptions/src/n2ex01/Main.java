@@ -3,29 +3,53 @@ package n2ex01;
 public class Main {
 
 	public static void main(String[] args) {
+		boolean correct = true; 
+		int loop_num = 1;
 		
-		// Provant mètodes que capturen l’excepció de la classe InputMismatchException:
-		byte resultatByte = Entrada.llegirByte("Introdueixi un byte");
-		System.out.println("Resultat byte:" + resultatByte);
-		
-		int resInt = Entrada.llegirInt("Introdueixi un nombre enter");
-		System.out.println("Resultat int:" + resInt);
+		do {
+			Entry entry = new Entry();
+			try {
+				// Methods that catch exception class InputMismatchException:
+				if(loop_num == 1) {
+					byte resultByte = Entry.readByte("Enter a byte");
+					System.out.println("Result byte: " + resultByte);
+					loop_num++;
+				}
+				if(loop_num == 2) {
+					int resInt = Entry.readInt("Enter an Integer");
+					System.out.println("Result int: " + resInt);
+					loop_num++;
+				}
+				if(loop_num == 3) {
+					float resFloat = Entry.readFloat("Enter a float");
+					System.out.println("Result float: " + resFloat);
+					loop_num++;
+				}
+				if(loop_num == 4) {
+					double resDouble = Entry.readDouble("Enter a double");
+					System.out.println("Result double: " + resDouble);
+					loop_num++;
+				}	
+ 	
+				// Methods that catch exception class Exception
+				if(loop_num == 5) {
+					char resChar = Entry.readChar("Enter a character");
+					System.out.println("Result character: " + resChar);
+					loop_num++;
+				}
+				if(loop_num == 6) {
+					String resString = Entry.readString("Enter a phrase");
+					System.out.println("Result phrase: " + resString);	
+					loop_num++;
+				}
+				boolean resBoolean = Entry.readYesNo("Do you like to answer quizzes: enter 'y' for yes and 'n' for no");
+				System.out.println("Result y/n: " + resBoolean);
 
-		float resFloat = Entrada.llegirFloat("Introdueixi un float");
-		System.out.println("Resultat float:" + resFloat);
-
-		double resDouble = Entrada.llegirDouble("Introdueixi un double");
-		System.out.println("Resultat double:" + resDouble);
-
-		//Mètodes a implantar capturant l’excepció de la classe Exception:
-		char resChar = Entrada.llegirChar("Introdueixi un caràcter");
-		System.out.println("Ha introduït el caràcter:" + resChar);
-
-		String resString = Entrada.llegirString("Introdueixi una frase");
-		System.out.println("Ha introduït la frase:" + resString);
-
-		boolean resBoolean = Entrada.llegirSiNo("Li agrada omplir qüestionaris: introdueixi 's' per sí i 'n' per no");
-		System.out.println("ResuHa introduït:" + resBoolean);
+				
+				correct = false;
+			} catch(Exception e) { // The exception InputMismatchException is already caught by Exception
+				System.out.println("Found format error" );
+			}
+		} while(correct);
 	}
-
 }
