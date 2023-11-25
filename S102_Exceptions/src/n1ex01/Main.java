@@ -3,32 +3,32 @@ package n1ex01;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		Venda venda1 = new Venda();
-		Producte prod1 = new Producte("Saxo", 555.5f);
-		Producte prod2 = new Producte("Llibreta pentagrama", 2.56f);	
-			// Error VendaBuidaException
-		venda1.getProductes().add(prod1);
-		venda1.getProductes().add(prod2);
-		
-//		Comprovar Error ArrayIndexOfBoundsException amb venda2
-//		Venda venda2 = new Venda();
-//		Producte prod1 = new Producte("Saxo", 555.5f);
-//		Producte prod2 = new Producte("Llibreta pentagrama", 2.56f);	
-//		Producte prod3 = new Producte("Piano", 2500);
-//		
-//		venda2.getProductes().add(prod1);
-//		venda2.getProductes().add(prod2);
-//		venda2.getProductes().add(prod3);
+
+		// EmptySaleException Error
+		Sale sale1 = new Sale();
 		
 		try {
-			venda1.calcularTotal();
-//			venda2.calcularTotal();
-		} catch(VendaBuidaException e) {
-			System.out.println("Trobat VendaBuidaException: " + e.getMessage());
-		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Trobat ArrayIndexOfBoundsException: " + e.getMessage());
+			sale1.calculateTotal();
+		} catch(EmptySaleException e) {
+			System.out.println("Found EmptySaleException: " + e.getMessage());
 		}
-			
+		
+		// ArrayIndexOfBoundsException Error 
+		Sale sale2 = new Sale();
+		Product prod1 = new Product("Tenor sax", 555.5f);
+		Product prod2 = new Product("Music notebook (8 staves)", 2.56f);	
+		Product prod3 = new Product("Piano", 2500);
+				
+		sale2.getProducts().add(prod1);
+		sale2.getProducts().add(prod2);
+		sale2.getProducts().add(prod3);
+
+		try {
+			sale2.printProducts();
+		} catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Found ArrayIndexOfBoundsException: " + e.getMessage());
+		}
+		
 	}
+	
 }
