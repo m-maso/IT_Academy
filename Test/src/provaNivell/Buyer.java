@@ -35,7 +35,13 @@ public class Buyer {
 		this.city = city;
 	}
 	
+	// method
 	public void buyItem(Item item) {	
 		boughtItems.add(item);
+	}
+	
+	@Override
+	public String toString() {
+		return "Buyer's Name: " + this.name + ", City: " + this.city;
 	}
 }

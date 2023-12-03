@@ -5,13 +5,12 @@ public class Item {
 	private String name;
 	private String type;
 	private double price;
-	private double wearPerc;
+	private int wear;
 	
-	public Item(String name, String type, double price, double wearPerc) {
+	public Item(String name, String type, double price) {
 		this.name = name;
 		this.type = type;
 		this.price = price;
-		this.wearPerc = wearPerc;
 	}
 	
 	public String getName() {
@@ -23,8 +22,8 @@ public class Item {
 	public double getPrice() {
 		return this.price;
 	}
-	public double wearPerc() {
-		return this.wearPerc;
+	public int wear() {
+		return this.wear;
 	}
 	
 	public void setName(String name) {
@@ -36,8 +35,14 @@ public class Item {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public void setWearPerc(double wearPerc) {
-		this.wearPerc = wearPerc;
+	public void setWear(int wear) {
+		this.wear = wear;
+	}
+	
+	//method
+	@Override
+	public String toString() {
+		return "Item: " + this.name + ", Type: " + this.type + ", Price: " + this.getPrice() + "£, Wear: " + this.wear + "%";
 	}
 	
 	
