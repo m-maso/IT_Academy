@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="template/template :: head">
+</head>
+<body>
+	<header th:replace="template/template :: header"></header><br>
+
+	
+		
+	<div class="container">
+		<h1 class="text-center" th:text="${title}"></h1>
+	</div>
+	<br>
+	<div class="container">
+		
+		<table class="table">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Branch Name</th>
+					<th scope="col">Country</th>
+					<th scope="col">Country Type</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="br:${branchesList}">
+
+					<th scope="row" th:text="${br.pk_BranchID}"></th>
+					<td th:text="${br.branchName}"></td>
+					<td th:text="${br.branchCountry}"></td>
+					<td th:text="${br.branchType}"></td>
+					<td>
+						<a class="btn btn-success btn-sm" 
+						th:href="@{/branch/viewBranch/} + ${br.pk_BranchID}"
+						th:text="'View'" title="Branch details"> </a>
+					</td>
+					<td>
+						<a class="btn btn-warning btn-sm" 
+						th:href="@{/branch/update/} + ${br.pk_BranchID}"
+						th:text="'Modify'" title="Modify branch"> </a>
+					</td>
+					<td>
+						<a class="btn btn-danger btn-sm" 
+						th:href="@{/branch/delete/} + ${br.pk_BranchID}"
+						th:text="'Delete'" title="Delete branch"> </a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	
+	<footer th:replace="template/template :: footer"></footer>
+</body>
+</html>

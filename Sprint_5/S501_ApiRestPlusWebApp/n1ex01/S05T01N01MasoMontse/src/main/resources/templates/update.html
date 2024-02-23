@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="template/template :: head">
+</head>
+<body>
+<header th:replace="template/template :: header" ></header>
+
+<div class="container">
+	<br><br>
+    <div class="card bg_light">
+        <div class="card-header bg-dark text-white" th:text="${title}"></div>
+        <div class="card-body">
+
+            <form th:action="@{/branch/edit}" th:object="${updatedBranch}" method="post">
+                <div class="form-group row">
+                 	<input type="hidden" th:field="*{pk_BranchID}">
+                 	
+                    <label for="branchName" >Name</label>
+                    <input type="text" th:field="*{branchName}" class="form-control" id="branchName" placeholder="Branch name">
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('branchName')}"
+							th:errors="*{branchName}"></small>
+                </div>
+                <div class="form-group row">
+                    <label for="branchCountry" >Country</label>
+                    <input type="text" th:field="*{branchCountry}" class="form-control" id="branchCountry" placeholder="Branch country">
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('branchCountry')}"
+							th:errors="*{branchCountry}"></small>
+                </div>
+				<div class="card-footer bg-dark">
+      				<input type="submit" class="btn btn-primary btn-sm" value="Update">
+   				</div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<footer th:replace="template/template :: footer"></footer>
+
+</body>
+</html>
