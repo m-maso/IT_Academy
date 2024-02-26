@@ -9,7 +9,7 @@ public class BranchDTO {
 	private String branchName;
 	private String branchCountry;
 	private String branchType;
-	private final List<String> euCountries = Arrays.asList("Austria","Belgium","Bulgaria","Croatia","Cyprus","Czech Republic","Denmark","Estonia","Finland","France","Germany","Greece","Hungary","Ireland","Italy","Latvia","Lithuania","Luxembourg","Malta","Netherlands","Poland","Portugal","Romania","Slovakia","Slovenia","Spain","Sweden");
+	private final List<String> euCountries = Arrays.asList("austria","belgium","bulgaria","croatia","cyprus","czech republic","denmark","estonia","finland","france","germany","greece","hungary","ireland","italy","latvia","lithuania","luxembourg","malta","netherlands","poland","portugal","romania","slovakia","slovenia","spain","sweden");
 	
 	public BranchDTO() {}
 	
@@ -52,16 +52,10 @@ public class BranchDTO {
 	
 	public String createBranchType(String branchCountry)
 	{
-		String type;
-		if(euCountries.contains(branchCountry))
-		{
-			type = "EU";
-		} else 
-		{
-			type = "Outside EU";
-		}
+		String type = (euCountries.contains(branchCountry.toLowerCase())) ?  "EU" : "Outside EU";
 		return type;
 	}
+	
 	
 	
 	
