@@ -84,8 +84,8 @@ public class PlayerServiceImpl implements PlayerService {
 		List<PlayerDTO> allPlayersDTO = allPlayers.stream()
 	        .map(player -> {
 	            PlayerDTO playerDTO = PlayerMapper.convertToDTO(player);
-	            playerDTO.setSuccessPercentage(player.calculateSuccessPercentatge());
-	            player.setSuccessPercentage(player.calculateSuccessPercentatge());
+	            playerDTO.setSuccessPercentage(player.calculateSuccessPercentage());
+	            player.setSuccessPercentage(player.calculateSuccessPercentage());
 	            return playerDTO;
 	        })
 	        .collect(Collectors.toList());
@@ -100,7 +100,7 @@ public class PlayerServiceImpl implements PlayerService {
 		List<Player> allPlayers = playerRepository.findAll();
 		
 		return allPlayers.stream()
-				.mapToDouble(Player::calculateSuccessPercentatge)
+				.mapToDouble(Player::calculateSuccessPercentage)
 				.average()
 				.orElse(0);
 	}
@@ -113,7 +113,7 @@ public class PlayerServiceImpl implements PlayerService {
 		
 		Player loser = allPlayers.stream()
 			.filter(player -> player.getSuccessPercentage() != null)
-		   	.min(Comparator.comparingDouble(Player::calculateSuccessPercentatge))
+		   	.min(Comparator.comparingDouble(Player::calculateSuccessPercentage))
 			.orElseThrow(() -> new EntityNotFoundException("Loser player not found"));
 		
 		return PlayerMapper.convertToDTO(loser);	
@@ -126,7 +126,7 @@ public class PlayerServiceImpl implements PlayerService {
 		
 		Player winner = allPlayers.stream()
 			.filter(player -> player.getSuccessPercentage() != null)
-			.max(Comparator.comparingDouble(Player::calculateSuccessPercentatge))
+			.max(Comparator.comparingDouble(Player::calculateSuccessPercentage))
 			.orElseThrow(() -> new EntityNotFoundException("Winner player not found"));
 		
 		return PlayerMapper.convertToDTO(winner);	

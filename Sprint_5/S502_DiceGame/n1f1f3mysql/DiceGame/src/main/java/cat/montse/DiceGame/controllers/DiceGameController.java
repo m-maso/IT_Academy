@@ -104,7 +104,7 @@ public class DiceGameController {
 
 	
 	@GetMapping("/ranking/winner")
-	public ResponseEntity<PlayerDTO>  getPlayerBestRanking()
+	public ResponseEntity<PlayerDTO> getPlayerBestRanking()
 	{
 		PlayerDTO winnerDTO = this.playerService.getPlayerLowRanking();
 		

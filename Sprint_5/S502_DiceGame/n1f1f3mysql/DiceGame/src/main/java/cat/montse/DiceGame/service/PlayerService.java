@@ -16,12 +16,6 @@ public interface PlayerService {
 	PlayerDTO getPlayerLowRanking();
 	PlayerDTO getPlayerBestRanking();
 
-
-
-	
-	
-	
-	
 	
 	
 }

@@ -50,7 +50,7 @@ public class DiceRollServiceImpl implements DiceRollService {
 			player.addRollsWon();
 		}
 		
-		player.calculateSuccessPercentatge();
+		player.calculateSuccessPercentage();
 		diceRollRepository.save(diceRoll);
 		
 		return DiceRollMapper.convertToDTO(diceRoll);

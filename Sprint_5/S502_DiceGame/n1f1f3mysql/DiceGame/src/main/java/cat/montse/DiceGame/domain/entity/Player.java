@@ -73,6 +73,7 @@ public class Player implements Serializable {
 		playerDiceRolls.add(diceRoll);
 		totalDiceRolls++;
 	}
+	
 	public void deleteAllDiceRolls() 
 	{
 		successPercentage = 0d;
@@ -84,7 +85,7 @@ public class Player implements Serializable {
 		diceRollsWon++;
 	}
 	
-	public double calculateSuccessPercentatge()
+	public double calculateSuccessPercentage()
 	{
 		if (playerDiceRolls.isEmpty() || playerDiceRolls == null) 
 		{
