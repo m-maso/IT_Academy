@@ -45,23 +45,32 @@ public class DiceRollServiceImpl implements DiceRollService {
 		diceRoll.setWin(isWin);
 		
 		player.addDiceRoll(diceRoll);
+		
 		if(isWin == true)
 		{
 			player.addRollsWon();
 		}
 		
 		player.calculateSuccessPercentage();
+		playerRepository.save(player);
+		
 		diceRollRepository.save(diceRoll);
 		
 		return DiceRollMapper.convertToDTO(diceRoll);
 	}
+	
 
 	@Override
 	@Transactional
 	public void deleteAllDiceRolls(Long playerId) 
 	{
+		Player player = playerRepository.findById(playerId).orElseThrow(
+				() -> new EntityNotFoundException("Player with id " + playerId + " not found"));
+		
+		player.deleteAllDiceRolls();
 		diceRollRepository.deleteAllByPlayerId(playerId);
 	}
+	
 
 	@Override
 	public List<DiceRollDTO> getAllDiceRolls(Long id) 

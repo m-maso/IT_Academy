@@ -27,7 +27,7 @@ public class User implements Serializable, UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
+	private Long id;
 
 	private String firstName;
 	private String lastName;
@@ -37,6 +37,8 @@ public class User implements Serializable, UserDetails {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
+	
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of(new SimpleGrantedAuthority(role.name()));

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,9 +15,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class Player implements Serializable {
 	private String name;
 	
 	@Column(nullable = false)
+	@CreationTimestamp(source = SourceType.DB)
 	private Date registerDate;
 	
 	private Double successPercentage;
@@ -47,17 +49,13 @@ public class Player implements Serializable {
 	@OneToMany(mappedBy = "player", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<DiceRoll> playerDiceRolls;
 	
-	@OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-	
 	
 	
 	public Player(String name)
 	{
 		this.name = name;
 		this.registerDate = new Date();
-		this.successPercentage = 0d;
+		this.successPercentage = null;
 		this.diceRollsWon = 0;
 		this.totalDiceRolls = 0;
 	}
@@ -66,7 +64,7 @@ public class Player implements Serializable {
 	
 	public void addDiceRoll(DiceRoll diceRoll)
 	{
-		if(diceRoll == null)
+		if(playerDiceRolls == null)
 		{
 			playerDiceRolls = new ArrayList<DiceRoll>();
 		}
@@ -76,7 +74,7 @@ public class Player implements Serializable {
 	
 	public void deleteAllDiceRolls() 
 	{
-		successPercentage = 0d;
+		successPercentage = null;
 		diceRollsWon = 0;
 		totalDiceRolls = 0;
 	}
@@ -89,9 +87,12 @@ public class Player implements Serializable {
 	{
 		if (playerDiceRolls.isEmpty() || playerDiceRolls == null) 
 		{
-           return 0;
+           return 0d;
 	    }
-		successPercentage = (double) ((diceRollsWon * 100) / totalDiceRolls);
+		
+		double successPerc = (double) ((diceRollsWon * 100) / totalDiceRolls);
+		
+		setSuccessPercentage(successPerc);
 		
 		return successPercentage;
 	}

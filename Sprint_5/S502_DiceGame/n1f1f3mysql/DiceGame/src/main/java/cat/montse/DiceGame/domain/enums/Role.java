@@ -4,6 +4,5 @@ public enum Role {
 
     USER,
     PLAYER,
-    ADMIN,
     NO_ROLE
 }
