@@ -42,7 +42,7 @@ public class Player {
 	{
 		this.name = name;
 		this.registerDate = new Date();
-		this.successPercentage = 0d;
+		this.successPercentage = null;
 		this.diceRollsWon = 0;
 		this.totalDiceRolls = 0;
 	}
@@ -53,7 +53,7 @@ public class Player {
 
 	public void addDiceRoll(DiceRoll diceRoll)
 	{
-		if(diceRoll == null)
+		if(playerDiceRolls == null)
 		{
 			playerDiceRolls = new ArrayList<DiceRoll>();
 		}
@@ -63,7 +63,7 @@ public class Player {
 	
 	public void deleteAllDiceRolls() 
 	{
-		successPercentage = 0d;
+		successPercentage = null;
 		diceRollsWon = 0;
 		totalDiceRolls = 0;
 	}
@@ -74,11 +74,14 @@ public class Player {
 	
 	public double calculateSuccessPercentage()
 	{
-		if (playerDiceRolls.isEmpty() || playerDiceRolls == null) 
+		if (playerDiceRolls == null || playerDiceRolls.isEmpty()) 
 		{
            return 0;
 	    }
-		successPercentage = (double) ((diceRollsWon * 100) / totalDiceRolls);
+		
+		double successPerc = (double) ((diceRollsWon * 100) / totalDiceRolls);
+		
+		setSuccessPercentage(successPerc);
 		
 		return successPercentage;
 	}

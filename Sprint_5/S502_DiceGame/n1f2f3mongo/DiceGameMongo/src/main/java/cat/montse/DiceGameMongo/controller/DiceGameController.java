@@ -112,4 +112,13 @@ public class DiceGameController {
 	}
 
 	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> deletePlayer(@PathVariable String id)
+	{
+		this.playerService.deletePlayer(id);
+		
+		return ResponseEntity.ok("Player with id " + id + " deleted successfully");
+	}
+	
+	
 }

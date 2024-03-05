@@ -12,6 +12,7 @@ public class PlayerMapper {
 		player.setId(playerDTO.getPlayerId());
 		player.setName(playerDTO.getPlayerName());
 		player.setRegisterDate(playerDTO.getRegisterDate());
+		player.setSuccessPercentage(playerDTO.getSuccessPercentage());
 	
 		return player;
 	}

@@ -82,9 +82,8 @@ public class PlayerServiceImpl implements PlayerService {
 		        .map(player -> {
 		            PlayerDTO playerDTO = PlayerMapper.convertToDTO(player);
 		            playerDTO.setSuccessPercentage(player.calculateSuccessPercentage());
-		            player.setSuccessPercentage(player.calculateSuccessPercentage());
-		            return playerDTO;
-		        })
+//		            player.setSuccessPercentage(player.calculateSuccessPercentage());
+		            return playerDTO;   })
 		        .collect(Collectors.toList());
 				
 		return allPlayersDTO;
@@ -97,6 +96,7 @@ public class PlayerServiceImpl implements PlayerService {
 		List<Player> allPlayers = playerRepository.findAll();
 		
 		return allPlayers.stream()
+				.filter(player -> player.getSuccessPercentage() != null)
 				.mapToDouble(Player::calculateSuccessPercentage)
 				.average()
 				.orElse(0);
@@ -106,37 +106,24 @@ public class PlayerServiceImpl implements PlayerService {
 	@Override
 	public PlayerDTO getPlayerLowRanking() 
 	{
-		List<Player> allPlayers = playerRepository.findAll();
+		List<PlayerDTO> playersSuccPercent = getAllPlayersWithAvgSuccessPercentage();
 		
-		Player loser = allPlayers.stream()
-				.filter(player -> player.getSuccessPercentage() != null)
-				.min(Comparator.comparingDouble(Player::calculateSuccessPercentage))
+		return playersSuccPercent.stream()
+				.filter(p -> p.getSuccessPercentage() != null)
+				.min(Comparator.comparingDouble(PlayerDTO::getSuccessPercentage))
 				.orElseThrow(() -> new EntityNotFoundException("Loser player not found"));
-		
-		return PlayerMapper.convertToDTO(loser);
-		
-//		List<PlayerDTO> playerswithAvgSuccessPerc = getAllPlayersWithAvgSuccessPercentage();
-//		return playerswithAvgSuccessPerc.stream()
-//				.min(Comparator.comparingDouble(PlayerDTO::getSuccessPercentage))
-//				.orElseThrow(() -> new EntityNotFoundException("Loser player not found"));
 	}
 
+	
 	@Override
 	public PlayerDTO getPlayerBestRanking() 
 	{
-		List<Player> allPlayers = playerRepository.findAll();
+		List<PlayerDTO> playersSuccPercent = getAllPlayersWithAvgSuccessPercentage();
 		
-		Player winner = allPlayers.stream()
-				.filter(player -> player.getSuccessPercentage() != null)
-				.max(Comparator.comparingDouble(Player::calculateSuccessPercentage))
+		return playersSuccPercent.stream()
+				.filter(p -> p.getSuccessPercentage() != null)
+				.max(Comparator.comparingDouble(PlayerDTO::getSuccessPercentage))
 				.orElseThrow(() -> new EntityNotFoundException("Loser player not found"));
-		
-		return PlayerMapper.convertToDTO(winner);
-		
-//		List<PlayerDTO> playerswithAvgSuccessPerc = getAllPlayersWithAvgSuccessPercentage();
-//		return playerswithAvgSuccessPerc.stream()
-//				.max(Comparator.comparingDouble(PlayerDTO::getSuccessPercentage))
-//				.orElseThrow(() -> new EntityNotFoundException("Winner player not found"));
 	}
 
 	
