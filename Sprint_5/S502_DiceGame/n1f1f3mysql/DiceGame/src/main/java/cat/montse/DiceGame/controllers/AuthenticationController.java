@@ -10,6 +10,7 @@ import cat.montse.DiceGame.dao.request.SingInRequest;
 import cat.montse.DiceGame.dao.request.SingUpRequest;
 import cat.montse.DiceGame.dao.response.JwtAuthenticationResponse;
 import cat.montse.DiceGame.service.AuthenticationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -22,12 +23,12 @@ public class AuthenticationController {
 
 	
 	@PostMapping("/signup")
-	public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody SingUpRequest request) {
+	public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody @Valid SingUpRequest request) {
 		return ResponseEntity.ok(authenticationService.signup(request));
 	}
 
 	@PostMapping("/signin")
-	public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SingInRequest request) {
+	public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody @Valid SingInRequest request) {
 		return ResponseEntity.ok(authenticationService.signin(request));
 	}
 }

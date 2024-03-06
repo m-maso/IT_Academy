@@ -2,6 +2,7 @@ package cat.montse.DiceGame.service.impl;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -10,8 +11,8 @@ import cat.montse.DiceGame.domain.dto.PlayerDTO;
 import cat.montse.DiceGame.domain.entity.Player;
 import cat.montse.DiceGame.exceptions.EntityAlreadyExistsException;
 import cat.montse.DiceGame.exceptions.EntityNotFoundException;
+import cat.montse.DiceGame.mapper.PlayerMapper;
 import cat.montse.DiceGame.repository.PlayerRepository;
-import cat.montse.DiceGame.service.PlayerMapper;
 import cat.montse.DiceGame.service.PlayerService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class PlayerServiceImpl implements PlayerService {
 
 	private final PlayerRepository playerRepository;
 	
-
+	
 	@Override
 	public PlayerDTO addPlayer(PlayerDTO playerDTO) 
 	{
@@ -49,7 +50,7 @@ public class PlayerServiceImpl implements PlayerService {
 	@Override
 	@Transactional
 	public Player modifyPlayerName(Long playerId, String updatedName) 
-	{	
+	{
 		Player player = playerRepository.findById(playerId).orElseThrow(
 				() -> new EntityNotFoundException("Player with id " + playerId + " not found"));
 		
@@ -74,19 +75,24 @@ public class PlayerServiceImpl implements PlayerService {
 				});
 		playerRepository.deleteById(playerId);
 	}
-	
+
 	
 	@Override
 	public List<PlayerDTO> getAllPlayersWithAvgSuccessPercentage() 
 	{
 		List<Player> allPlayers = playerRepository.findAll();
 		
-		return allPlayers.stream()
+		List<PlayerDTO> playersRanking = allPlayers.stream()
 	        .map(player -> {
 	            PlayerDTO playerDTO = PlayerMapper.convertToDTO(player);
 	            playerDTO.setSuccessPercentage(player.calculateSuccessPercentage());
 	            return playerDTO; })
 	        .collect(Collectors.toList());
+		
+		return playersRanking.stream()
+				.filter(plDTO -> plDTO.getSuccessPercentage() != null)
+				.sorted(Comparator.comparing(PlayerDTO::getSuccessPercentage).reversed())
+				.collect(Collectors.toList());
 	}
 
 	
@@ -104,28 +110,35 @@ public class PlayerServiceImpl implements PlayerService {
 
 	
 	@Override
-	public PlayerDTO getPlayerLowRanking() 
-	{		
-		List<PlayerDTO> playersSuccPercent = getAllPlayersWithAvgSuccessPercentage();
-		
-		return playersSuccPercent.stream()
-				.filter(p -> p.getSuccessPercentage() != null)
-				.min(Comparator.comparingDouble(PlayerDTO::getSuccessPercentage))
-				.orElseThrow(() -> new EntityNotFoundException("Loser player not found"));
-	}
-
-	@Override
-	public PlayerDTO getPlayerBestRanking() 
+	public List<PlayerDTO> getPlayerLowRanking() 
 	{
-		List<PlayerDTO> playersSuccPercent = getAllPlayersWithAvgSuccessPercentage();
+		List<PlayerDTO> playersDTORanking = getAllPlayersWithAvgSuccessPercentage();
 		
-		return playersSuccPercent.stream()
-				.filter(p -> p.getSuccessPercentage() != null)
-				.max(Comparator.comparingDouble(PlayerDTO::getSuccessPercentage))
-				.orElseThrow(() -> new EntityNotFoundException("Loser player not found"));
+		double minScore = getAllPlayersWithAvgSuccessPercentage().stream()
+				.min(Comparator.comparing(PlayerDTO::getSuccessPercentage))
+				.map(PlayerDTO::getSuccessPercentage)
+				.orElseThrow(NoSuchElementException::new);
+		
+		return playersDTORanking.stream()
+				.filter(p -> p.getSuccessPercentage() == minScore)
+				.toList();
 	}
 
 	
+	@Override
+	public List<PlayerDTO> getPlayerBestRanking() 
+	{
+		List<PlayerDTO> playersDTORanking = getAllPlayersWithAvgSuccessPercentage();
+		
+		double maxScore = getAllPlayersWithAvgSuccessPercentage().stream()
+				.max(Comparator.comparing(PlayerDTO::getSuccessPercentage))
+				.map(PlayerDTO::getSuccessPercentage)
+				.orElseThrow(NoSuchElementException::new);
+		
+		return playersDTORanking.stream()
+				.filter(p -> p.getSuccessPercentage() == maxScore)
+				.toList();
+	}
 
 	
 }
