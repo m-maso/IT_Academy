@@ -13,7 +13,7 @@ public interface PlayerService {
 	
 	List<PlayerDTO> getAllPlayersWithAvgSuccessPercentage();
 	Double getAllPlayersAverageRanking();
-	PlayerDTO getPlayerLowRanking();
-	PlayerDTO getPlayerBestRanking();
+	List<PlayerDTO> getPlayerLowRanking();
+	List<PlayerDTO> getPlayerBestRanking();
 	
 }

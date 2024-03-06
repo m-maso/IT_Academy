@@ -10,9 +10,9 @@ import cat.montse.DiceGameMongo.domain.dto.DiceRollDTO;
 import cat.montse.DiceGameMongo.domain.entity.DiceRoll;
 import cat.montse.DiceGameMongo.domain.entity.Player;
 import cat.montse.DiceGameMongo.exceptions.EntityNotFoundException;
+import cat.montse.DiceGameMongo.mapper.DiceRollMapper;
 import cat.montse.DiceGameMongo.repository.DiceRollRepository;
 import cat.montse.DiceGameMongo.repository.PlayerRepository;
-import cat.montse.DiceGameMongo.service.DiceRollMapper;
 import cat.montse.DiceGameMongo.service.DiceRollService;
 import lombok.RequiredArgsConstructor;
 

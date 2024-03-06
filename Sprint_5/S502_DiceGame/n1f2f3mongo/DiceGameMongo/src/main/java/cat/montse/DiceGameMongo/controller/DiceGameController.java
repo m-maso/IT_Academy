@@ -95,20 +95,20 @@ public class DiceGameController {
 	
 
 	@GetMapping("/ranking/loser")
-	public ResponseEntity<PlayerDTO> getPlayerLowRanking()
+	public ResponseEntity<List<PlayerDTO>> getPlayerLowRanking()
 	{
-		PlayerDTO loserDTO = this.playerService.getPlayerLowRanking();
+		List<PlayerDTO> losersDTO = this.playerService.getPlayerLowRanking();
 		
-		return ResponseEntity.status(HttpStatus.OK).body(loserDTO);
+		return ResponseEntity.status(HttpStatus.OK).body(losersDTO);
 	}
 
 	
 	@GetMapping("/ranking/winner")
-	public ResponseEntity<PlayerDTO> getPlayerBestRanking()
+	public ResponseEntity<List<PlayerDTO>> getPlayerBestRanking()
 	{
-		PlayerDTO winnerDTO = this.playerService.getPlayerLowRanking();
+		List<PlayerDTO> winnersDTO = this.playerService.getPlayerLowRanking();
 		
-		return ResponseEntity.status(HttpStatus.OK).body(winnerDTO);
+		return ResponseEntity.status(HttpStatus.OK).body(winnersDTO);
 	}
 
 	
